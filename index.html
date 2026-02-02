@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DYAI — Design Your Augmented Intelligence</title>
+    
+    <!-- Fonts: Inter (Geometric Sans) and JetBrains Mono (Technical) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              dyai: {
+                base: '#F8FAFC', // Slate 50
+                surface: '#FFFFFF',
+                line: '#CBD5E1', // Slate 300
+                text: '#334155', // Slate 700
+                muted: '#64748B', // Slate 500
+                accent: '#06B6D4', // Cyan 500
+                accentGlow: '#CFFAFE', // Cyan 100
+                warning: '#F59E0B', // Amber 500
+              }
+            },
+            boxShadow: {
+              // Enhanced 3D Plastic/Metal Feel
+              'plastic': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 2px 0 0 rgba(255, 255, 255, 0.9), inset 0 -2px 0 0 rgba(0, 0, 0, 0.1)',
+              'plastic-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1), inset 0 2px 0 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 0 rgba(6, 182, 212, 0.4), 0 0 25px -2px rgba(6, 182, 212, 0.25)',
+              'inset': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+            },
+            backgroundImage: {
+               'grid-pattern': "linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px)",
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom utility for the "engraved" text effect */
+      .text-engraved {
+        color: #94a3b8;
+        text-shadow: 1px 1px 0px rgba(255, 255, 255, 1), -1px -1px 0px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Desert Shadow - Cinematic 3D Ground Projection */
+      .text-desert-shadow {
+        position: relative;
+        display: inline-block;
+        color: #334155;
+        /* Solid, high-quality look for the main text */
+        text-shadow: 
+          1px 1px 0px #cbd5e1,
+          -1px -1px 0px #ffffff;
+        transform-style: preserve-3d;
+        z-index: 10;
+      }
+
+      .text-desert-shadow::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 85%; /* Start slightly overlapping the bottom */
+        width: 100%;
+        height: 100%;
+        
+        /* The Shadow Appearance */
+        color: transparent;
+        text-shadow: 0 0 0 rgba(51, 65, 85, 0.25); /* Slate shadow color */
+        
+        /* The Projection Logic */
+        transform-origin: bottom center;
+        transform: perspective(800px) rotateX(70deg) skewX(-30deg) scaleY(1.5) translateZ(-10px);
+        
+        /* Fade out logic */
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 80%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 80%);
+        
+        /* Softness */
+        filter: blur(3px);
+        pointer-events: none;
+        z-index: -1;
+        transition: all 0.5s ease-out;
+      }
+      
+      /* Subtle lift on hover */
+      .text-desert-shadow:hover {
+         transform: translateY(-2px);
+      }
+      .text-desert-shadow:hover::after {
+        transform: perspective(800px) rotateX(70deg) skewX(-35deg) scaleY(1.6) translateZ(-10px) translateX(5px);
+        filter: blur(4px);
+        text-shadow: 0 0 0 rgba(51, 65, 85, 0.2);
+      }
+
+      /* Carbon Polymer - Crisp, Technical, Matte */
+      .text-carbon-polymer {
+        color: #475569;
+        text-shadow: 
+          1px 1px 0px rgba(255,255,255,1),
+          -0.5px -0.5px 0px rgba(0,0,0,0.1);
+      }
+
+      /* Titan Box Shadow - Sharp Machined Block */
+      .shadow-titan {
+        box-shadow: 
+          8px 8px 16px rgba(0, 0, 0, 0.12),
+          -8px -8px 16px rgba(255, 255, 255, 1),
+          inset 1px 1px 0px rgba(255, 255, 255, 0.5),
+          inset -1px -1px 0px rgba(0, 0, 0, 0.05);
+      }
+      
+      body {
+        background-color: #F8FAFC;
+        color: #334155;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
